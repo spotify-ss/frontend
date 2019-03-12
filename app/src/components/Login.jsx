@@ -88,7 +88,7 @@ const Login = props => {
             }}
             type="submit"
           >
-            Login
+            {!props.signingUp ? 'Log In' : 'Submit'}
           </button>
           {!props.signingUp && (
             <button
