@@ -72,7 +72,7 @@ const Login = props => {
             onChange={e => setUsername(e.target.value)}
           />
           <input
-            type="text"
+            type={props.signingUp ? 'text' : 'password' }
             placeholder="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
