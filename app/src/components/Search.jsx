@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Track from './Track';
 import { searchingTracks } from '../actions';
 import { debounce } from 'underscore';
+import { Loader } from '../components/withLoading';
 
 const TracksContainer = styled.div`
   display: flex;
@@ -51,9 +52,11 @@ class Search extends Component {
           />
         </form>
         <TracksContainer>
-          {this.props.tracks.map(track => (
-            <Track key={track.track_id} track={track} />
-          ))}
+          <Loader isLoading={this.props.loading}>
+            {this.props.tracks.map(track => (
+              <Track key={track.track_id} track={track} />
+            ))}
+          </Loader>
         </TracksContainer>
       </div>
     );
@@ -61,7 +64,8 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  tracks: state.tracks.results
+  tracks: state.tracks.results,
+  loading: state.tracks.searching
 });
 
 export default connect(
