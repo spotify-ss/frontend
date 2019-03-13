@@ -74,17 +74,23 @@ export const gettingArtistTracks = id => dispatch => {
     .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
-export const searchingArtists = terms => dispatch => {
-  dispatch({ type: ARTIST_SEARCH_START });
+export const searchingByArtist = terms => dispatch => {
+  console.log('Searching by Artist');
+  dispatch(
+    { type: TRACK_SEARCH_START,
+      byArtist: true
+    }
+);
+  // .get('https://spotify-ss-backend.herokuapp.com/api/artist_search', {
+  //   params: {
+  //     terms
+  //   }
+  // })
   return axios
-    .get('https://spotify-ss-backend.herokuapp.com/api/artist_search', {
-      params: {
-        terms
-      }
-    })
+    .get('https://my.api.mockaroo.com/api/track?key=7fee3030')
     .then(res => {
       console.log(res);
-      dispatch({ type: ARTIST_SEARCH_SUCCESS, payload: res.data });
+      dispatch({ type: TRACK_SEARCH_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: ERROR, payload: err }));
 };

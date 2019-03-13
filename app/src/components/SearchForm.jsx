@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import styled from 'styled-components';
 import { connect } from "react-redux";
-import { searchingTracks } from "../actions";
+import { searchingTracks, searchingByArtist } from "../actions";
 import { debounce } from "underscore";
 // import { WSAEDQUOT } from 'constants';
 
@@ -34,7 +34,9 @@ class Search extends Component {
   };
 
   searchingTracksDebounced = debounce(value => {
-    this.props.searchingTracks(value);
+    this.state.searchingByArtist 
+    ? this.props.searchingByArtist(value)
+    : this.props.searchingTracks(value)
   }, 500);
 
   render() {
@@ -59,7 +61,6 @@ class Search extends Component {
             <p>By Artist</p>
             <input
               type="checkbox"
-              checked={false}
               onChange={this.handleCheckBox}
             />
           </div>
@@ -74,9 +75,9 @@ const mapStateToProps = state => ({
   loading: state.tracks.searching
 });
 
-export default connect(
-  mapStateToProps,
+export default connect(mapStateToProps,
   {
-    searchingTracks
+    searchingTracks,
+    searchingByArtist
   }
 )(Search);
