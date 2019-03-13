@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ThumbsDown, ThumbsUp } from 'react-feather';
-import { upthumbTrack, downthumbTrack } from '../actions';
+import { upthumbTrack, downthumbTrack, searchingByArtists } from '../actions';
 import { Link } from 'react-router-dom';
 
 const TrackPreview = styled.div`
@@ -60,16 +60,18 @@ const Track = ({
   upthumbTrack,
   downthumbTrack,
   thumbedUp,
-  thumbedDown
+  thumbedDown,
+  searchingByArtists
 }) => {
   return (
     <TrackPreview>
       <Link to={`/track/${track.track_id}`}>
         <h1>{track.track_name}</h1>
       </Link>
-      <Link to={`/artist/${track.artist_name}`}>
+      <h2 onClick={() => searchingByArtists(track.artist_name)}>{track.artist_name}</h2>
+      {/* <Link to={`/artist/${track.artist_name}`}>
         <h2>{track.artist_name}</h2>
-      </Link>
+      </Link> */}
       <Buttons>
         <ThumbsUpBtn active={thumbedDown} onClick={downthumbTrack}>
           <ThumbsUp />
@@ -116,5 +118,5 @@ const mdtp = (dispatch, ownProps) => {
 
 export default connect(
   mstp,
-  mdtp
+  { searchingByArtists }
 )(Track);

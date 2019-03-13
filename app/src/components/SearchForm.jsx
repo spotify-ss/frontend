@@ -1,7 +1,81 @@
-import React from 'react';
+import React, { Component } from "react";
+// import styled from 'styled-components';
+import { connect } from "react-redux";
+import { searchingTracks, searchingByArtists } from "../actions";
+import { debounce } from "underscore";
+// import { WSAEDQUOT } from 'constants';
 
-const SearchForm = (props) => {
-  return ;
-};
+class Search extends Component {
+  constructor(props) {
+    super(props);
 
-export default SearchForm;
+    this.state = {
+      searchTerm: ""
+    };
+  }
+
+  componentDidMount() {
+    this.props.searchingTracks("");
+  }
+
+  handleCheckBox = () => {
+    
+  }
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    this.searchingTracksDebounced(e.target.value);
+  };
+
+  searchingTracksDebounced = debounce(value => {
+    this.state.searchingByArtist 
+    ? this.props.searchingByArtist(value)
+    : this.props.searchingTracks(value)
+  }, 500);
+
+  render() {
+    return (
+      <div>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.props.searchingTracks(this.state.searchTerm);
+          }}
+        >
+          <div>
+            <input
+              type="text"
+              name="searchTerm"
+              placeholder="Search Track"
+              value={this.state.searchTerm}
+              onChange={this.onChange}
+            />
+          </div>
+          <div>
+            <p>By Artist</p>
+            <input
+              type="checkbox"
+              checked={this.props.byArtists}
+              onChange={this.handleCheckBox}
+            />
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  tracks: state.tracks.results,
+  loading: state.tracks.searching,
+  byArtists: state.tracks.searchingByArtists
+});
+
+export default connect(mapStateToProps,
+  {
+    searchingTracks,
+    searchingByArtists
+  }
+)(Search);

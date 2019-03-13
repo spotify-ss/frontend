@@ -2,6 +2,8 @@ import axios from 'axios';
 
 export const LOGOUT = 'LOGOUT';
 
+export const TOGGLE_SEARCH_ARTIST = 'TOGGLE_SEARCH_ARTIST';
+
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
@@ -59,6 +61,13 @@ export const gettingClosestTracks = (trackId, page = 0) => dispatch => {
     .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
+export const toggleSearchArtist = artist => {
+  return ({
+    type: TOGGLE_SEARCH_ARTIST,
+    payload: artist
+  })
+}
+
 export const gettingArtistTracks = id => dispatch => {
   dispatch({ type: GET_ARTIST_TRACKS_START });
   return axios
@@ -74,30 +83,51 @@ export const gettingArtistTracks = id => dispatch => {
     .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
-export const searchingArtists = terms => dispatch => {
-  dispatch({ type: ARTIST_SEARCH_START });
-  return axios
-    .get('https://spotify-ss-backend.herokuapp.com/api/artist_search', {
-      params: {
-        terms
+export const searchingByArtists = searchTerms => dispatch => {
+  console.log('Searching by Artist action creator');
+  console.log('SearchTerms:')
+  console.log(searchTerms)
+  console.log('SearchingByArtists:')
+  console.log(searchingByArtists)
+  dispatch(
+    { type: TRACK_SEARCH_START,
+      payload: {
+        searchingByArtists: true,
+        searchTerms
       }
-    })
+    }
+);
+  // .get('https://spotify-ss-backend.herokuapp.com/api/artist_search', {
+  //   params: {
+  //     terms
+  //   }
+  // })
+  return axios
+    .get('https://spotify-ss-backend.herokuapp.com/api/artists/artist/YG')
     .then(res => {
       console.log(res);
-      dispatch({ type: ARTIST_SEARCH_SUCCESS, payload: res.data });
+      dispatch({ type: TRACK_SEARCH_SUCCESS, payload: res.data.tracks });
     })
     .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
-export const searchingTracks = terms => dispatch => {
-  dispatch({ type: TRACK_SEARCH_START, payload: terms });
+export const searchingTracks = searchTerms => dispatch => {
+  dispatch(
+    { 
+      type: TRACK_SEARCH_START, 
+      payload: {
+        searchingByArtists: false,
+        searchTerms
+      } 
+    }
+  );
   // .get(
   //   `https://spotify-ss-backend.herokuapp.com/api/track?track_name=${terms}`
   // )
   return axios
-    .get('https://my.api.mockaroo.com/api/track?key=7fee3030')
+  .get('https://spotify-ss-backend.herokuapp.com/api/artists/artist/YG')
     .then(res => {
-      dispatch({ type: TRACK_SEARCH_SUCCESS, payload: res.data });
+      dispatch({ type: TRACK_SEARCH_SUCCESS, payload: res.data.tracks });
     })
     .catch(err => {
       console.log(err.response);

@@ -1,10 +1,11 @@
-import * as actions from '../actions';
+import * as actions from "../actions";
 
 const initialState = {
   results: [],
   searching: false,
   hasError: false,
-  searchTerms: ''
+  searchTerms: "",
+  searchingByArtists: false
 };
 
 export default (state = initialState, action) => {
@@ -14,7 +15,8 @@ export default (state = initialState, action) => {
         ...state,
         searching: true,
         hasError: false,
-        searchTerms: action.payload
+        searchTerms: action.payload.searchTerms,
+        searchingByArtists: action.payload.searchingByArtists,
       };
 
     case actions.TRACK_SEARCH_SUCCESS:
@@ -24,6 +26,12 @@ export default (state = initialState, action) => {
         searching: false,
         results: action.payload
       };
+
+    case action.TOGGLE_SEARCH_START:
+      return {
+        ...state,
+        searchingArtists: true,
+      }
 
     case actions.ERROR:
       return {
