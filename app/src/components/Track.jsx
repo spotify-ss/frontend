@@ -1,33 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-const imgWidth = 30;
-const fontSize = 1;
 
 const TrackPreview = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   margin: 5px 0;
-  h1 {
-    font-size: ${fontSize}em;
-    text-align: left;
-  }
+  font-size: 2rem;
+  width: 100%;
+  border: 1px solid red;
+
   h2 {
-    font-size: ${fontSize / 1.5}em;
-    text-align: left;
+    font-size: 1.5rem;
   }
-  div {
-    width: 100%;
-    margin: 0 0 10px;
-    margin-left: 10px;
-  }
-  img {
-    width: ${imgWidth}%;
-    height: ${imgWidth}%;
-  }
-  audio {
-    width: 100%;
-  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export default ({ track }) => {
@@ -35,6 +26,11 @@ export default ({ track }) => {
     <TrackPreview>
       <h1>{track.track_name}</h1>
       <h2>{track.artist_name}</h2>
+      <Buttons>
+        <button>similar</button>
+        <button>thumbsUp</button>
+        <button>thumbsDown</button>
+      </Buttons>
     </TrackPreview>
   );
 };
