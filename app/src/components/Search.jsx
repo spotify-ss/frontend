@@ -14,56 +14,58 @@ const SongsContainer = styled.div`
 `;
 
 class Search extends Component {
-    constructor(props) {
-        super(props);
-
+    constructor() {
+        super();
         this.state = {
-            searchTerm: ''
+            searchTerm: '',
+            results: []
         };
     }
 
     onChange = e => {
-    this.setState({
-        [e.target.name]: e.target.value
-    });
-    this.searchingSongsDebounced(e.target.value);
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+        this.searchingSongsDebounced(e.target.value);
     };
 
     searchingSongsDebounced = debounce(value => {
-    this.props.searchingSongs(value);
+        this.props.searchingSongs(value);
     }, 1000);
 
     render() {
         console.log(this.props);
         return (
             <div>
-            <form
-                onSubmit={e => {
-                e.preventDefault();
-                this.props.searchingSongs(this.state.searchTerm);
-                }}
-            >
-            <input
-                type="text"
-                name="searchTerm"
-                placeholder="Search Song"
-                value={this.state.searchTerm}
-                onChange={this.onChange}
-            />
-            </form>
-            <SongsContainer>
-                {this.props.songs.map(track => (
-                    <Track key={track.track_id} track={track} />
-                ))}
-            </SongsContainer>
-        </div>
+                <form
+                    onSubmit={e => {
+                    e.preventDefault();
+                    this.props.searchingSongs(this.state.searchTerm);
+                    }}
+                >
+                <input
+                    type="text"
+                    name="searchTerm"
+                    placeholder="Search Song"
+                    value={this.state.searchTerm}
+                    onChange={this.onChange}
+                />
+                </form>
+                <SongsContainer>
+                    {this.state.results.map(track => (
+                        <Track key={track.track_id} track={track} />
+                    ))}
+                </SongsContainer>
+            </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    songs: state.songs.results
-});
+const mapStateToProps = state => {
+    return {
+        songs: state.songs.results
+    }
+};
 
 export default connect(
     mapStateToProps,

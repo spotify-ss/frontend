@@ -15,7 +15,6 @@ export default (state = initialState, action) => {
         ...state,
         logginIn: true
       };
-
     case actions.LOGIN_SUCCESS:
       return {
         ...state,
