@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { searchingTracks } from '../actions';
-import { debounce } from 'underscore';
+import { connect } from "react-redux";
+import { searchingTracks } from "../actions";
+import { debounce } from "underscore";
 // import { WSAEDQUOT } from 'constants';
-
-
 
 class Search extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      searchTerm: ''
+      searchTerm: "",
+      searchingByArtist: false
     };
   }
 
   componentDidMount() {
-    this.props.searchingTracks('');
+    this.props.searchingTracks("");
+  }
+
+  handleCheckBox = e => {
+    this.setState({
+      ...this.state,
+      searchingByArtist: !this.state.searchingByArtist
+    })
   }
 
   onChange = e => {
@@ -40,13 +46,23 @@ class Search extends Component {
             this.props.searchingTracks(this.state.searchTerm);
           }}
         >
-          <input
-            type="text"
-            name="searchTerm"
-            placeholder="Search Track"
-            value={this.state.searchTerm}
-            onChange={this.onChange}
-          />
+          <div>
+            <input
+              type="text"
+              name="searchTerm"
+              placeholder="Search Track"
+              value={this.state.searchTerm}
+              onChange={this.onChange}
+            />
+          </div>
+          <div>
+            <p>By Artist</p>
+            <input
+              type="checkbox"
+              checked={false}
+              onChange={this.handleCheckBox}
+            />
+          </div>
         </form>
       </div>
     );

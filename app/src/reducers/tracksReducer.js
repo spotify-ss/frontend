@@ -1,10 +1,10 @@
-import * as actions from '../actions';
+import * as actions from "../actions";
 
 const initialState = {
   results: [],
   searching: false,
   hasError: false,
-  searchTerms: ''
+  searchTerms: ""
 };
 
 export default (state = initialState, action) => {
