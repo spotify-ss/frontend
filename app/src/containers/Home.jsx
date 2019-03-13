@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 import NavBar from '../components/NavBar';
-import Search from '../components/Search';
+import TrackNameSearch from '../components/TrackNameSearch';
+import ArtistNameSearch from '../components/ArtistNameSearch';
 import SpotifyPlayer from '../components/SpotifyPlayer';
 import { loggingOut } from '../actions';
 
@@ -17,7 +19,10 @@ class Home extends Component {
       <div>
         <NavBar loggingOut={this.props.loggingOut} />
         <p>Home Page</p>
-        <Search />
+        <Route exact path="/" component={TrackNameSearch} />
+        <Route path="/by_artist/:name" render={({ match }) => (
+          <ArtistNameSearch artistName={match.params.name} />
+        )}/>
         <SpotifyPlayer />
       </div>
     );
