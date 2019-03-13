@@ -112,11 +112,12 @@ const mstp = (state, ownProps) => {
 const mdtp = (dispatch, ownProps) => {
   return {
     upthumbTrack: () => dispatch(upthumbTrack(ownProps.track.track_id)),
-    downthumbTrack: () => dispatch(downthumbTrack(ownProps.track.track_id))
+    downthumbTrack: () => dispatch(downthumbTrack(ownProps.track.track_id)),
+    searchingByArtists: () => dispatch(searchingByArtists())
   };
 };
 
 export default connect(
   mstp,
-  { searchingByArtists }
+  mdtp
 )(Track);
