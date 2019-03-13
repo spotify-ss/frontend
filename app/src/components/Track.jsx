@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ThumbsDown, ThumbsUp } from 'react-feather';
 import { upthumbTrack, downthumbTrack } from '../actions';
+import { Link } from 'react-router-dom';
 
 const TrackPreview = styled.div`
   display: flex;
@@ -63,8 +64,12 @@ const Track = ({
 }) => {
   return (
     <TrackPreview>
-      <h1>{track.track_name}</h1>
-      <h2>{track.artist_name}</h2>
+      <Link to={`/track/${track.track_id}`}>
+        <h1>{track.track_name}</h1>
+      </Link>
+      <Link to={`/artist/${track.artist_name}`}>
+        <h2>{track.artist_name}</h2>
+      </Link>
       <Buttons>
         <ThumbsUpBtn active={thumbedDown} onClick={downthumbTrack}>
           <ThumbsUp />
