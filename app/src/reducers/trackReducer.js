@@ -1,17 +1,17 @@
-import * as actions from '../actions'
+import * as actions from '../actions';
 
 const initialState = {
-    currentTrack: ''
-}
+  currentTrack: ''
+};
 
 export default (state = initialState, action) => {
-    switch(action.type){
-        case actions.PLAY:
-            return {
-                ...state,
-                currentTrack: action.payload
-            }
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case actions.PLAY:
+      return {
+        ...state,
+        currentTrack: action.payload
+      };
+    default:
+      return state;
+  }
+};
