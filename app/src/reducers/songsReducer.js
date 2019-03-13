@@ -18,12 +18,13 @@ export default (state = initialState, action) => {
       };
 
     case actions.SONG_SEARCH_SUCCESS:
-      return {
-        ...state,
-        hasError: false,
-        searching: false,
-        results: action.payload
-      };
+        console.log(action.payload);
+        return {
+                ...state,
+                hasError: false,
+                searching: false,
+                results: action.payload
+        };
 
     case actions.ERROR:
       return {

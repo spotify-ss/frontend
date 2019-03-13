@@ -34,16 +34,11 @@ const TrackPreview = styled.div`
     }
 `
 
-const Track = (props) => {
-    console.log(props)
+const Track = ({track}) => {
     return(
         <TrackPreview>
-            <img src={props.album.images[1].url} alt="" onClick ={() => props.play(props.id)}/>
-            <div>
-                <h1>{props.name}</h1>
-                <h2>{props.artists.map(artist => `${artist.name}, `)}</h2>
-                {/* <audio src={props.preview_url} controls controlsList = 'nodownload'></audio> */}
-            </div>
+            <h1>{track.name}</h1>
+            <h2>{track.artist_name}</h2>
         </TrackPreview>
     )
 }
@@ -54,3 +49,10 @@ const mstp = state => {
     }
 }
 export default connect(mstp, {play})(Track)
+
+// <img src={props.album.images[1].url} alt="" onClick ={() => props.play(props.id)}/> 
+//  <div>
+//  <h1>{props.name}</h1>
+//  <h2>{props.artists.map(artist => `${artist.name}, `)}</h2>
+//  <audio src={props.preview_url} controls controlsList = 'nodownload'></audio>
+// </div>

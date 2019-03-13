@@ -46,129 +46,129 @@ export const ERROR = 'ERROR';
 // };
 
 export const gettingClosestValues = (target, page = 0) => dispatch => {
-  dispatch({ type: GET_CLOSEST_VALUES_START });
-  return axios
-    .post('https://spotify-ss-backend.herokuapp.com/api/get_closest_values', {
-      target,
-      'page-number': page
-    })
-    .then(res => {
-      console.log(res);
-      dispatch({ type: GET_CLOSEST_SONGS_SUCCESS, payload: res.data });
-    })
-    .catch(err => dispatch({ type: ERROR, payload: err }));
+    dispatch({ type: GET_CLOSEST_VALUES_START });
+    return axios
+        .post('https://spotify-ss-backend.herokuapp.com/api/get_closest_values', {
+            target,
+            'page-number': page
+        })
+        .then(res => {
+            console.log(res);
+            dispatch({ type: GET_CLOSEST_SONGS_SUCCESS, payload: res.data });
+        })
+        .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
 export const gettingClosestSongs = (trackId, page = 0) => dispatch => {
-  dispatch({ type: GET_CLOSEST_SONGS_START });
-  return axios
-    .post('https://spotify-ss-backend.herokuapp.com/api/get_closest_songs', {
-      'track-id': trackId,
-      'page-number': page
-    })
-    .then(res => {
-      console.log(res);
-      dispatch({ type: GET_CLOSEST_SONGS_SUCCESS, payload: res.data });
-    })
-    .catch(err => dispatch({ type: ERROR, payload: err }));
+    dispatch({ type: GET_CLOSEST_SONGS_START });
+    return axios
+        .post('https://spotify-ss-backend.herokuapp.com/api/get_closest_songs', {
+            'track-id': trackId,
+            'page-number': page
+        })
+        .then(res => {
+            console.log(res);
+            dispatch({ type: GET_CLOSEST_SONGS_SUCCESS, payload: res.data });
+        })
+        .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
 export const gettingArtistSongs = id => dispatch => {
-  dispatch({ type: GET_ARTIST_SONGS_START });
-  return axios
-    .get('https://spotify-ss-backend.herokuapp.com/api/get_artist_songs', {
-      params: {
-        id
-      }
-    })
-    .then(res => {
-      console.log(res);
-      dispatch({ type: GET_ARTIST_SONGS_SUCCESS, payload: res.data });
-    })
-    .catch(err => dispatch({ type: ERROR, payload: err }));
+    dispatch({ type: GET_ARTIST_SONGS_START });
+    return axios
+        .get('https://spotify-ss-backend.herokuapp.com/api/get_artist_songs', {
+            params: {
+                id
+            }
+        })
+        .then(res => {
+            console.log(res);
+            dispatch({ type: GET_ARTIST_SONGS_SUCCESS, payload: res.data });
+        })
+        .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
 export const searchingArtists = terms => dispatch => {
-  dispatch({ type: ARTIST_SEARCH_START });
-  return axios
-    .get('https://spotify-ss-backend.herokuapp.com/api/artist_search', {
-      params: {
-        terms
-      }
-    })
-    .then(res => {
-      console.log(res);
-      dispatch({ type: ARTIST_SEARCH_SUCCESS, payload: res.data });
-    })
-    .catch(err => dispatch({ type: ERROR, payload: err }));
+    dispatch({ type: ARTIST_SEARCH_START });
+    return axios
+        .get('https://spotify-ss-backend.herokuapp.com/api/artist_search', {
+            params: {
+                terms
+            }
+        })
+        .then(res => {
+            console.log(res);
+            dispatch({ type: ARTIST_SEARCH_SUCCESS, payload: res.data });
+        })
+        .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
 export const searchingSongs = terms => dispatch => {
-  dispatch({ type: SONG_SEARCH_START, payload: terms });
-  return axios
-    .get('https://spotify-ss-backend.herokuapp.com/api/search_songs', {
-      params: {
-        terms
-      }
-    })
-    .then(res => {
-      console.log(res);
-      dispatch({ type: SONG_SEARCH_SUCCESS, payload: res.data });
-    })
-    .catch(err => dispatch({ type: ERROR, payload: err }));
+    dispatch({ type: SONG_SEARCH_START, payload: terms });
+    return axios
+        .get(`https://spotify-ss-backend.herokuapp.com/api/track?track_name=${terms}`)
+        .then(res => {
+            console.log('RESPONSE:');
+            console.log(res);
+            dispatch({ type: SONG_SEARCH_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+            console.log(err.response);
+            return dispatch({ type: ERROR, payload: err })
+        });
 };
 
 export const loggingIn = (login, password) => dispatch => {
-  dispatch({
-    type: LOGIN_START
-  });
-  return axios
-    .post('https://spotify-ss-backend.herokuapp.com/api/users/login', {
-      username: login,
-      password: password
-    })
-    .then(res => {
-      localStorage.setItem('token', res.data.token);
-      dispatch({
-        type: LOGIN_SUCCESS
-      });
-    })
-    .catch(err => {
-      dispatch({
-        type: ERROR,
-        payload: err
-      });
+    dispatch({
+        type: LOGIN_START
     });
+    return axios
+        .post('https://spotify-ss-backend.herokuapp.com/api/users/login', {
+            username: login,
+            password: password
+        })
+        .then(res => {
+            localStorage.setItem('token', res.data.token);
+            dispatch({
+                type: LOGIN_SUCCESS
+            });
+        })
+        .catch(err => {
+            dispatch({
+                type: ERROR,
+                payload: err
+            });
+        });
 };
 
 export const loggingOut = () => {
-  localStorage.clear();
-  return {
-    type: LOGOUT
-  };
+    localStorage.clear();
+    return {
+        type: LOGOUT
+    };
 };
 
 export const signingUp = (login, password) => dispatch => {
-  dispatch({
-    type: SIGNUP_START
-  });
-  return axios
-    .post('https://spotify-ss-backend.herokuapp.com/api/users/register', {
-      username: login,
-      password: password
-    })
-    .then(res => {
-      localStorage.setItem('token', res.data.token);
-      dispatch({
-        type: SIGNUP_SUCCESS
-      });
-    })
-    .catch(err => {
-      dispatch({
-        type: ERROR,
-        payload: err
-      });
+    dispatch({
+        type: SIGNUP_START
     });
+    return axios
+        .post('https://spotify-ss-backend.herokuapp.com/api/users/register', {
+            username: login,
+            password: password
+        })
+        .then(res => {
+            localStorage.setItem('token', res.data.token);
+            dispatch({
+                type: SIGNUP_SUCCESS
+            });
+        })
+        .catch(err => {
+            dispatch({
+                type: ERROR,
+                payload: err
+            });
+        });
 };
 
 // Track Actions----------------------------------------------------------------------------------------------------------------------
@@ -176,8 +176,8 @@ export const signingUp = (login, password) => dispatch => {
 export const PLAY = 'PLAY';
 
 export const play = trackId => {
-  return {
-    type: PLAY,
-    payload: trackId
-  };
+    return {
+            type: PLAY,
+            payload: trackId
+    };
 };
