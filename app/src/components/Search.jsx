@@ -53,7 +53,10 @@ class Search extends Component {
                 </form>
                 <SongsContainer>
                     {this.state.results.map(track => (
-                        <Track key={track.track_id} track={track} />
+                        <Track 
+                            key={track.track_id} 
+                            track={track} 
+                        />
                     ))}
                 </SongsContainer>
             </div>
@@ -69,7 +72,7 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    {
-        searchingSongs
-    }
+        {
+            searchingSongs
+        }
 )(Search);
