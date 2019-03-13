@@ -36,7 +36,7 @@ class Search extends Component {
 
   searchingTracksDebounced = debounce(value => {
     this.props.searchingTracks(value);
-  }, 1000);
+  }, 500);
 
   render() {
     return (

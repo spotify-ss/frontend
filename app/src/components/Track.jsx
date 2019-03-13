@@ -29,11 +29,30 @@ const Buttons = styled.div`
 const ThumbsUpBtn = styled.button`
   color: ${props => (props.active ? 'green' : 'black')};
 `;
-
 // Thumbs Up Button, if it has the active = 1, show red, otherwise black
 const ThumbsDownBtn = styled.button`
   color: ${props => (props.active ? 'red' : 'black')};
 `;
+
+//   {
+//     artist_name: 'Mendie MacNeish',
+//     track_id: 'efa2912c-ad54-4483-bdae-5e3cbc5abebb',
+//     track_name: 'Just Go with It',
+//     acousticness: 'mmacneish0@biblegateway.com',
+//     danceability: 'Male',
+//     duration_ms: 374506,
+//     energy: 0.46562,
+//     instrumentalness: 1,
+//     key: 1,
+//     liveness: 1,
+//     loudness: 1,
+//     mode: 0,
+//     speechiness: 0,
+//     tempo: 295,
+//     time_signature: 5,
+//     popularity: 1,
+//     image_url: 'http://dummyimage.com/151x146.png/ff4444/ffffff'
+//   }
 
 const Track = ({
   track,
