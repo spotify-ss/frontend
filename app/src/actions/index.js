@@ -25,6 +25,8 @@ export const GET_CLOSEST_TRACKS_SUCCESS = 'GET_CLOSEST_TRACK_SUCCESS';
 export const GET_CLOSEST_VALUES_START = 'GET_CLOSEST_VALUES_START';
 export const GET_CLOSEST_VALUES_SUCCESS = 'GET_CLOSEST_VALUES_SUCCESS';
 
+export const SEARCH_TERM_CHANGED = 'SEARCH_TERM_CHANGED';
+
 export const DOWNTHUMB_TRACK = 'DOWNTHUMB_TRACK';
 export const UPTHUMB_TRACK = 'UPTHUMB_TRACK';
 
@@ -32,6 +34,11 @@ export const upthumbTrack = id => ({ type: UPTHUMB_TRACK, payload: id });
 export const downthumbTrack = id => ({ type: DOWNTHUMB_TRACK, payload: id });
 
 export const ERROR = 'ERROR';
+
+export const searchTermChanged = term => ({
+  type: SEARCH_TERM_CHANGED,
+  payload: term
+});
 
 export const gettingClosestValues = (target, page = 0) => dispatch => {
   dispatch({ type: GET_CLOSEST_VALUES_START });
@@ -61,12 +68,11 @@ export const gettingClosestTracks = (trackId, page = 0) => dispatch => {
     .catch(err => dispatch({ type: ERROR, payload: err }));
 };
 
-export const toggleSearchArtist = artist => {
-  return ({
-    type: TOGGLE_SEARCH_ARTIST,
-    payload: artist
-  })
-}
+export const toggleSearchArtist = () => {
+  return {
+    type: TOGGLE_SEARCH_ARTIST
+  };
+};
 
 export const gettingArtistTracks = id => dispatch => {
   dispatch({ type: GET_ARTIST_TRACKS_START });
@@ -85,18 +91,17 @@ export const gettingArtistTracks = id => dispatch => {
 
 export const searchingByArtists = searchTerms => dispatch => {
   console.log('Searching by Artist action creator');
-  console.log('SearchTerms:')
-  console.log(searchTerms)
-  console.log('SearchingByArtists:')
-  console.log(searchingByArtists)
-  dispatch(
-    { type: TRACK_SEARCH_START,
-      payload: {
-        searchingByArtists: true,
-        searchTerms
-      }
+  console.log('SearchTerms:');
+  console.log(searchTerms);
+  console.log('SearchingByArtists:');
+  console.log(searchingByArtists);
+  dispatch({
+    type: TRACK_SEARCH_START,
+    payload: {
+      searchingByArtists: true,
+      searchTerms
     }
-);
+  });
   // .get('https://spotify-ss-backend.herokuapp.com/api/artist_search', {
   //   params: {
   //     terms
@@ -112,20 +117,18 @@ export const searchingByArtists = searchTerms => dispatch => {
 };
 
 export const searchingTracks = searchTerms => dispatch => {
-  dispatch(
-    { 
-      type: TRACK_SEARCH_START, 
-      payload: {
-        searchingByArtists: false,
-        searchTerms
-      } 
+  dispatch({
+    type: TRACK_SEARCH_START,
+    payload: {
+      searchingByArtists: false,
+      searchTerms
     }
-  );
+  });
   // .get(
   //   `https://spotify-ss-backend.herokuapp.com/api/track?track_name=${terms}`
   // )
   return axios
-  .get('https://spotify-ss-backend.herokuapp.com/api/artists/artist/YG')
+    .get('https://spotify-ss-backend.herokuapp.com/api/artists/artist/YG')
     .then(res => {
       dispatch({ type: TRACK_SEARCH_SUCCESS, payload: res.data.tracks });
     })
@@ -217,4 +220,3 @@ export const play = trackId => {
 //     })
 //     .catch(err => dispatch({ type: ERROR, payload: err }));
 // };
-
