@@ -23,6 +23,10 @@ class Search extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.searchingTracks('');
+  }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
