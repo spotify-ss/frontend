@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Track from './Track';
-import { searchingSongs } from '../actions';
+import { searchingTracks } from '../actions';
 import { debounce } from 'underscore';
 
-const SongsContainer = styled.div`
+const TracksContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,11 +26,11 @@ class Search extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    this.searchingSongsDebounced(e.target.value);
+    this.searchingTracksDebounced(e.target.value);
   };
 
-  searchingSongsDebounced = debounce(value => {
-    this.props.searchingSongs(value);
+  searchingTracksDebounced = debounce(value => {
+    this.props.searchingTracks(value);
   }, 1000);
 
   render() {
@@ -39,34 +39,34 @@ class Search extends Component {
         <form
           onSubmit={e => {
             e.preventDefault();
-            this.props.searchingSongs(this.state.searchTerm);
+            this.props.searchingTracks(this.state.searchTerm);
           }}
         >
           <input
             type="text"
             name="searchTerm"
-            placeholder="Search Song"
+            placeholder="Search Track"
             value={this.state.searchTerm}
             onChange={this.onChange}
           />
         </form>
-        <SongsContainer>
-          {this.props.songs.map(track => (
+        <TracksContainer>
+          {this.props.tracks.map(track => (
             <Track key={track.track_id} track={track} />
           ))}
-        </SongsContainer>
+        </TracksContainer>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  songs: state.songs.results
+  tracks: state.tracks.results
 });
 
 export default connect(
   mapStateToProps,
   {
-    searchingSongs
+    searchingTracks
   }
 )(Search);

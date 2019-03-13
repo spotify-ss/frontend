@@ -9,7 +9,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actions.SONG_SEARCH_START:
+    case actions.TRACK_SEARCH_START:
       return {
         ...state,
         searching: true,
@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         searchTerms: action.payload
       };
 
-    case actions.SONG_SEARCH_SUCCESS:
+    case actions.TRACK_SEARCH_SUCCESS:
       return {
         ...state,
         hasError: false,

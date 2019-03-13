@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ThumbsDown, ThumbsUp } from 'react-feather';
 
 const TrackPreview = styled.div`
   display: flex;
@@ -21,15 +22,22 @@ const Buttons = styled.div`
   justify-content: center;
 `;
 
+const ThumbsUpBtn = styled.button`
+  color: ${props => props.active ? 'green' : 'black'}
+`;
+
+const ThumbsDownBtn = styled.button`
+  color: ${props => props.active ? 'red' : 'black'}
+`;
+
 export default ({ track }) => {
   return (
     <TrackPreview>
       <h1>{track.track_name}</h1>
       <h2>{track.artist_name}</h2>
       <Buttons>
-        <button>similar</button>
-        <button>thumbsUp</button>
-        <button>thumbsDown</button>
+        <ThumbsDownBtn><ThumbsUp /></ThumbsDownBtn>
+        <ThumbsUpBtn><ThumbsDown /></ThumbsUpBtn>
       </Buttons>
     </TrackPreview>
   );
