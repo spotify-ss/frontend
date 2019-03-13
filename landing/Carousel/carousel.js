@@ -7,49 +7,35 @@ class Carousel {
         this.counterPre = this.imgs.length - 1;
         this.counterCurr = 0;
         this.counterNex = 1;
-        // window.addEventListener('load', this.loadFirstImg());
-        this.rightBtn.addEventListener('click', () => this.changeImgR());
-        this.leftBtn.addEventListener('click', () => this.changeImgL());
+        window.addEventListener('load', this.loadFirstImg());
+        window.setInterval(this.changeImgR.bind(this), 9000);
+        // this.rightBtn.addEventListener('click', () => this.changeImgR());
+        // this.leftBtn.addEventListener('click', () => this.changeImgL());
     }
 
-    // loadFirstImg() {
-    //     let previousImg = this.imgs[this.counterPre];
-    //     let currantImg = this.imgs[this.counterCurr];
-    //     let nextImg = this.imgs[this.counterNex];
+    loadFirstImg() {
+        let previousImg = this.imgs[this.counterPre];
+        let currantImg = this.imgs[this.counterCurr];
+        let nextImg = this.imgs[this.counterNex];
 
-    //     this.imgs.forEach((pic) => {
-    //         pic.style.display = 'none';
-    //         pic.style.width = '00%';
-    //         pic.style.transform = 'translate(-100%, 0)';
-    //         pic.style.order = '0';
-    //         pic.style.zIndex = '0';
-    //         // pic.style.transition = 'all 2s linear';
-    //     });
+        this.imgs.forEach((pic) => {
+            pic.style.display = 'none';
+            pic.style.zIndex = '0';
+            pic.style.transition = 'all 3s linear';
+        });
 
-    //     previousImg.style.display = 'block';
-    //     previousImg.style.order = '0';
-    //     previousImg.style.zIndex = '0';
-    //     previousImg.style.width = '0%';
+        previousImg.style.display = 'block';
+        previousImg.style.zIndex = '0';
+        previousImg.style.opacity = '1';
 
-    //     previousImg.style.transform = 'translate(-100%, 0)';
-    //     previousImg.style.transition = 'all 2s linear';
+        currantImg.style.display = 'block';
+        currantImg.style.zIndex = '1';
+        currantImg.style.opacity = '1';
 
-    //     currantImg.style.display = 'block';
-    //     currantImg.style.order = '1';
-    //     currantImg.style.zIndex = '1';
-    //     currantImg.style.width = '100%';
-
-    //     currantImg.style.transform = 'translate(0%, 0)';
-    //     currantImg.style.transition = 'all 2s linear';
-
-    //     nextImg.style.display = 'block';
-    //     nextImg.style.order = '2';
-    //     nextImg.style.zIndex = '1';
-    //     nextImg.style.width = '0%';
-
-    //     nextImg.style.transform = 'translate(50%, 0)';
-    //     nextImg.style.transition = 'all 2s linear';
-    // }
+        nextImg.style.display = 'block';
+        nextImg.style.zIndex = '1';
+        nextImg.style.opacity = '0';
+    }
 
     changeImgR() {
         //--------------checks number to keep counter looping within number of imgs----------
@@ -82,39 +68,21 @@ class Carousel {
 
         this.imgs.forEach((pic) => {
             pic.style.display = 'none';
-            // pic.style.width = '00%';
-            // pic.style.transform = 'translate(-100%, 0)';
-            // pic.style.order = '0';
             pic.style.zIndex = '0';
-            // pic.style.transition = 'all 2s linear';
+            pic.style.transition = 'all 3s linear';
         });
 
         previousImg.style.display = 'block';
-        // previousImg.style.order = '0';
         previousImg.style.zIndex = '0';
         previousImg.style.opacity = '1';
-        // previousImg.style.width = '30%';
-        // previousImg.style.transform = 'rotateY(90deg)';
-        // previousImg.style.transform = 'translate(-100%, 0)';
-        previousImg.style.transition = 'all 2s linear';
 
         currantImg.style.display = 'block';
-        // currantImg.style.order = '1';
         currantImg.style.zIndex = '1';
         currantImg.style.opacity = '1';
-        // currantImg.style.width = '100%';
-        // currantImg.style.transform = 'rotateY(0deg)';
-        // currantImg.style.transform = 'translate(0%, 0)';
-        currantImg.style.transition = 'all 2s linear';
 
         nextImg.style.display = 'block';
-        // nextImg.style.order = '2';
         nextImg.style.zIndex = '1';
         nextImg.style.opacity = '0';
-        // nextImg.style.width = '30%';
-        // nextImg.style.transform = 'rotateY(-90deg)';
-        // nextImg.style.transform = 'translate(50%, 0)';
-        nextImg.style.transition = 'all 2s linear';
     }
 
     changeImgL() {
@@ -200,3 +168,8 @@ new Carousel(carousel);
     5. Think of how you would animate this compoennt. Make the cards slide in and out, or fade. It's up to you!
     6. Have fun!
 */
+// function doesThisWork() {
+//     console.log('this works');
+// }
+
+// window.setInterval(doesThisWork, 2000);
