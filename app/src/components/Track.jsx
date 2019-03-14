@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ThumbsDown, ThumbsUp } from 'react-feather';
-import { upthumbTrack, downthumbTrack, searchingByArtists } from '../actions';
+import { upthumbTrack, downthumbTrack } from '../actions/thumb';
+import { searchingByArtists } from '../actions/track';
 import { Link } from 'react-router-dom';
 
 const TrackPreview = styled.div`

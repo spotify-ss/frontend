@@ -1,4 +1,5 @@
-import * as actions from '../actions';
+import * as actions from '../actions/track';
+import { ERROR } from '../actions/shared';
 
 const initialState = {
   results: [],
@@ -37,7 +38,7 @@ export default (state = initialState, action) => {
         searchingArtists: true
       };
 
-    case actions.ERROR:
+    case ERROR:
       return {
         ...state,
         searching: false,

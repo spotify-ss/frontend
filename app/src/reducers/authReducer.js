@@ -1,4 +1,5 @@
-import * as actions from '../actions';
+import * as actions from '../actions/auth';
+import { ERROR } from '../actions/shared';
 
 const initialState = {
   logginIn: false,
@@ -21,7 +22,7 @@ export default (state = initialState, action) => {
         logginIn: false,
         isAuthenticated: true
       };
-    case actions.ERROR:
+    case ERROR:
       return {
         ...state,
         logginIn: false,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loggingIn, loggingOut, signingUp } from '../actions';
+import { loggingIn, loggingOut, signingUp } from '../actions/auth';
 
 import Login from '../components/Login';
 import PrivateRoute from '../components/PrivateRoute';

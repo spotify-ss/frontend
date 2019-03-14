@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Track from './Track';
-import { searchingTracks } from '../actions';
+import { searchingTracks } from '../actions/track';
 import { debounce } from 'underscore';
 import { Loader } from '../components/withLoading';
 

@@ -7,7 +7,7 @@ import SearchForm from '../components/SearchForm';
 import ArtistNameSearch from '../components/ArtistNameSearch';
 import TracksContainer from '../components/TracksContainer';
 import SpotifyPlayer from '../components/SpotifyPlayer';
-import { loggingOut } from '../actions';
+import { loggingOut } from '../actions/auth';
 
 class Home extends Component {
   constructor(props) {

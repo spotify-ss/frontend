@@ -6,7 +6,7 @@ import {
   searchingByArtists,
   toggleSearchArtist,
   searchTermChanged
-} from '../actions';
+} from '../actions/track';
 import { debounce } from 'underscore';
 // import { WSAEDQUOT } from 'constants';
 
