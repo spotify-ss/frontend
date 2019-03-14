@@ -69,22 +69,18 @@ const Track = ({
       <Link to={`/track/${track.track_id}`}>
         <h1>{track.track_name}</h1>
       </Link>
-      <h2 onClick={() => searchingByArtists(track.artist_name)}>{track.artist_name}</h2>
+      <h2 onClick={() => searchingByArtists(track.artist_name)}>
+        {track.artist_name}
+      </h2>
       {/* <Link to={`/artist/${track.artist_name}`}>
         <h2>{track.artist_name}</h2>
       </Link> */}
       <Buttons>
-        <ThumbsUpBtn 
-          active={thumbedUp}
-          onClick={upthumbTrack} 
-          >
+        <ThumbsUpBtn active={thumbedUp} onClick={upthumbTrack}>
           <ThumbsUp />
         </ThumbsUpBtn>
 
-        <ThumbsDownBtn 
-          active={thumbedDown} 
-          onClick={downthumbTrack}
-        >
+        <ThumbsDownBtn active={thumbedDown} onClick={downthumbTrack}>
           <ThumbsDown />
         </ThumbsDownBtn>
       </Buttons>
@@ -118,12 +114,10 @@ const mstp = (state, ownProps) => {
 // Map dispatch to props, send the ids here from ownProps
 const mdtp = (dispatch, ownProps) => {
   const userId = localStorage.getItem('userId');
-  console.log('OWN PROPS:');
-  console.log(ownProps);
   return {
     upthumbTrack: () => dispatch(upthumbTrack(ownProps.track.id, userId)),
     downthumbTrack: () => dispatch(downthumbTrack(ownProps.track.id, userId)),
-    searchingByArtists: (name) => dispatch(searchingByArtists(name))
+    searchingByArtists: name => dispatch(searchingByArtists(name))
   };
 };
 
