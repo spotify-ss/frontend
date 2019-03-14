@@ -74,10 +74,17 @@ const Track = ({
         <h2>{track.artist_name}</h2>
       </Link> */}
       <Buttons>
-        <ThumbsUpBtn active={thumbedDown} onClick={downthumbTrack}>
+        <ThumbsUpBtn 
+          active={thumbedUp}
+          onClick={upthumbTrack} 
+          >
           <ThumbsUp />
         </ThumbsUpBtn>
-        <ThumbsDownBtn onClick={upthumbTrack} active={thumbedUp}>
+
+        <ThumbsDownBtn 
+          active={thumbedDown} 
+          onClick={downthumbTrack}
+        >
           <ThumbsDown />
         </ThumbsDownBtn>
       </Buttons>
@@ -90,18 +97,17 @@ const Track = ({
 const mstp = (state, ownProps) => {
   // destructure track_id out of ownProps.track
   const {
-    track: { track_id }
+    track: { id }
   } = ownProps;
 
   // destructure uppedIds and downedIds from state.thumbs (thumbReducer)
   const { uppedIds, downedIds } = state.thumbs;
 
   // if uppedIds includes this track, assume this track has been upthumbed
-  const thumbedUp = uppedIds.indexOf(track_id) > -1 ? 1 : 0;
+  const thumbedUp = uppedIds.indexOf(id) > -1 ? 1 : 0;
 
   // same for down
-  const thumbedDown = !thumbedUp && downedIds.indexOf(track_id) > -1 ? 1 : 0;
-
+  const thumbedDown = !thumbedUp && downedIds.indexOf(id) > -1 ? 1 : 0;
   // return those as props
   return {
     thumbedUp,
@@ -111,9 +117,12 @@ const mstp = (state, ownProps) => {
 
 // Map dispatch to props, send the ids here from ownProps
 const mdtp = (dispatch, ownProps) => {
+  const userId = localStorage.getItem('userId');
+  console.log('OWN PROPS:');
+  console.log(ownProps);
   return {
-    upthumbTrack: () => dispatch(upthumbTrack(ownProps.track.track_id)),
-    downthumbTrack: () => dispatch(downthumbTrack(ownProps.track.track_id)),
+    upthumbTrack: () => dispatch(upthumbTrack(ownProps.track.id, userId)),
+    downthumbTrack: () => dispatch(downthumbTrack(ownProps.track.id, userId)),
     searchingByArtists: (name) => dispatch(searchingByArtists(name))
   };
 };
