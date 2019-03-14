@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ThumbsDown, ThumbsUp } from 'react-feather';
-import { upthumbTrack, downthumbTrack, searchingByArtists } from '../actions';
+import { upthumbTrack, downthumbTrack, searchingByArtists, deleteUpthumbTrack, deleteDownthumbTrack } from '../actions';
 import { Link } from 'react-router-dom';
 
 const TrackPreview = styled.div`
@@ -61,7 +61,9 @@ const Track = ({
   downthumbTrack,
   thumbedUp,
   thumbedDown,
-  searchingByArtists
+  searchingByArtists,
+  deleteUpthumbTrack,
+  deleteDownthumbTrack
 }) => {
   return (
     <TrackPreview>
@@ -75,14 +77,14 @@ const Track = ({
       <Buttons>
         <ThumbsUpBtn 
           active={thumbedUp}
-          onClick={upthumbTrack} 
+          onClick={thumbedUp ? deleteUpthumbTrack : upthumbTrack} 
           >
           <ThumbsUp />
         </ThumbsUpBtn>
 
         <ThumbsDownBtn 
           active={thumbedDown} 
-          onClick={downthumbTrack}
+          onClick={thumbedDown ? deleteDownthumbTrack : downthumbTrack}
         >
           <ThumbsDown />
         </ThumbsDownBtn>
@@ -109,6 +111,7 @@ const mstp = (state, ownProps) => {
   const thumbedDown = !thumbedUp && downedIds.indexOf(id) > -1 ? 1 : 0;
   // return those as props
   return {
+    state: {...state},
     thumbedUp,
     thumbedDown
   };
@@ -117,11 +120,11 @@ const mstp = (state, ownProps) => {
 // Map dispatch to props, send the ids here from ownProps
 const mdtp = (dispatch, ownProps) => {
   const userId = localStorage.getItem('userId');
-  console.log('OWN PROPS:');
-  console.log(ownProps);
   return {
     upthumbTrack: () => dispatch(upthumbTrack(ownProps.track.id, userId)),
     downthumbTrack: () => dispatch(downthumbTrack(ownProps.track.id, userId)),
+    deleteUpthumbTrack: () => dispatch(deleteUpthumbTrack(ownProps.track.id)),
+    deleteDownthumbTrack: () => dispatch(deleteDownthumbTrack(ownProps.track.id)),
     searchingByArtists: (name) => dispatch(searchingByArtists(name))
   };
 };

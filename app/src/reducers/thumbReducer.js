@@ -50,8 +50,10 @@ const downthumbTrack = (state, action) => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case actions.DELETE_UPTHUMB_START:
     case actions.UPTHUMB_TRACK_START:
       return upthumbTrack(state, action);
+    case actions.DELETE_DOWNTHUMB_START:
     case actions.DOWNTHUMB_TRACK_START:
       return downthumbTrack(state, action);
 
