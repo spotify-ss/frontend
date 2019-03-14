@@ -1,4 +1,6 @@
 import axios from 'axios';
+import axiosWithAuth from '../components/axiosWithAuth';
+
 
 export const LOGOUT = 'LOGOUT';
 
@@ -148,7 +150,20 @@ export const loggingIn = (login, password) => dispatch => {
       password: password
     })
     .then(res => {
+      console.log(res);
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userId', res.data.userId);
+      // (function() {
+      //   const token = res.data.token;
+      //   if (token) {
+      //     axios.defaults.headers.common['Authorization'] = token;
+      //   } else {
+      //     axios.defaults.headers.common['Authorization'] = null;
+      //     /*if setting null does not remove `Authorization` header then try
+      //      delete axios.defaults.headers.common['Authorization'];
+      //    */
+      //   }
+      // })();
       dispatch({
         type: LOGIN_SUCCESS
       });
