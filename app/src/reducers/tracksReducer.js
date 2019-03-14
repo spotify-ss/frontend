@@ -45,6 +45,19 @@ export default (state = initialState, action) => {
         hasError: true
       };
 
+    case actions.GET_USER_FIT_START:
+      return {
+        ...state,
+        searching: true
+      };
+
+    case actions.GET_USER_FIT_SUCCESS:
+      return {
+        ...state,
+        results: action.payload,
+        searching: false
+      };
+
     default:
       return state;
   }

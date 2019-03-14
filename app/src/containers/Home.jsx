@@ -4,10 +4,10 @@ import { Route } from 'react-router-dom';
 
 import NavBar from '../components/NavBar';
 import SearchForm from '../components/SearchForm';
-import ArtistNameSearch from '../components/ArtistNameSearch';
 import TracksContainer from '../components/TracksContainer';
 import SpotifyPlayer from '../components/SpotifyPlayer';
 import { loggingOut } from '../actions/auth';
+import { gettingUserFit } from '../actions/track';
 
 class Home extends Component {
   constructor(props) {
@@ -18,13 +18,21 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <NavBar loggingOut={this.props.loggingOut} />
+        <NavBar
+          loggingOut={this.props.loggingOut}
+          gettingUserFit={this.props.gettingUserFit}
+        />
         <p>Home Page</p>
-        <Route exact path="/" component={SearchForm} />
-        <Route path="/by_artist/:name" render={({ match }) => (
-          <ArtistNameSearch artistName={match.params.name} />
-        )}/>
-        <TracksContainer />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <>
+              <SearchForm />
+              <TracksContainer />
+            </>
+          )}
+        />
         <SpotifyPlayer />
       </div>
     );
@@ -35,5 +43,5 @@ class Home extends Component {
 
 export default connect(
   null,
-  { loggingOut }
+  { loggingOut, gettingUserFit }
 )(Home);

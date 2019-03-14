@@ -21,11 +21,13 @@ export const GET_CLOSEST_TRACKS_SUCCESS = 'GET_CLOSEST_TRACK_SUCCESS';
 
 export const SEARCH_TERM_CHANGED = 'SEARCH_TERM_CHANGED';
 
+export const GET_USER_FIT_START = 'GET_USER_FIT_START';
+export const GET_USER_FIT_SUCCESS = 'GET_USER_FIT_SUCCESS';
+
 export const searchTermChanged = term => ({
   type: SEARCH_TERM_CHANGED,
   payload: term
 });
-
 
 export const gettingClosestValues = (target, page = 0) => dispatch => {
   dispatch({ type: GET_CLOSEST_VALUES_START });
@@ -85,7 +87,9 @@ export const searchingByArtists = searchTerms => dispatch => {
     }
   });
   return axios
-    .get(`https://spotify-ss-backend.herokuapp.com/api/artists/artist/${searchTerms}`)
+    .get(
+      `https://spotify-ss-backend.herokuapp.com/api/artists/artist/${searchTerms}`
+    )
     .then(res => {
       console.log(res);
       dispatch({ type: TRACK_SEARCH_SUCCESS, payload: res.data.tracks });
@@ -113,4 +117,22 @@ export const searchingTracks = searchTerms => dispatch => {
       console.log(err.response);
       return dispatch({ type: ERROR, payload: err });
     });
+};
+
+export const gettingUserFit = (page = 1) => dispatch => {
+  dispatch({ type: GET_USER_FIT_START });
+  return axiosWithAuth()
+    .get(
+      'https://spotify-ss-backend.herokuapp.com/api/users/user_predicted_tracks',
+      {
+        params: {
+          page_number: page
+        }
+      }
+    )
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_USER_FIT_SUCCESS, payload: res.data.tracks });
+    })
+    .catch(err => dispatch({ type: ERROR, payload: err }));
 };
