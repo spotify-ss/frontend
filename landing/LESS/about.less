@@ -130,141 +130,33 @@ table {
 * {
   box-sizing: border-box;
 }
-//Variable
+//Imports
 @import "variables";
+@import "footer";
+@import "about-page";
+@import 'navigation';
+@import 'dropdown';
+
+// Mixins
+@import "mixins";
 
 html,
 body {
-  height: 100%;
+  // height: 100%;
   font-size: 62.5%;
   background-image: url('../../images/background.jpg') ;
   background-repeat: no-repeat;
-  // background-size: cover;
+  background-size: cover;
   // height: 100%;
   // overflow: hidden;
   
 }
-.main-content{
-  display:flex;
-  justify-content: center;
-}
-.container{
-  width: 1000px;
-  padding-left: 20px
-  
-  
-  // display:flex;
-  // justify-content: center;
-  
-}
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  background:@bfcolor;
-  position: fixed;
-  width:100%
-}
-nav .logo {
-  width: 50px;
-  height: 50px;
-}
-// nav {
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-//   flex-direction: row;
-//   width: 60%;
-// }
-nav a {
-  font-size: 2rem;
-  padding: 20px;
-  text-decoration: none;
-  font-family: @roboto;
-  color:  whitesmoke;
-  
-  
-}
-button{
-  width:220px;
-  height: 50px;
-  border-radius: 20px;
-  font-family: @marker;
-  font-size: 24px;
-  background-color: @accent;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 0;
-  
-}
-.title {
-  text-align: center;
-  font-size: 4rem;
-  padding: 20px;
-  font-family: @marker;
-  color:whitesmoke;
-  
-  
-}
-.slogan{
-  text-align:center;
-  font-size: 24px;
-  font-family: @roboto;
-  color: whitesmoke;
-  display:flex;
-  justify-content: space-evenly;
-  // border-bottom: solid 2px black;
-  padding-bottom: 20px;
-  
-}
-.team-content{
-  // display:flex;
-  // justify-content: center;
-
-}
-.section1{
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-
-}
-.section1 h1{
-  font-family: @roboto;
-  font-size: 24px;
-  text-align: center;
-  color: whitesmoke;
-
-  
-}
-.section1 p{
-  font-family: @quicksand;
-  font-size: 16px;
-  color:whitesmoke;
-  display:flex;
-  flex-wrap: wrap;
-  width:300px;
-}
 
 
-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    background:@bfcolor;
-  
-}
-footer p{
-  font-size: 2rem;
-  padding: 20px;
-  text-decoration: none;
-  font-family: @roboto;
-  color:  whitesmoke;
-}
-footer a{
-  font-size: 2rem;
-  padding: 20px;
-  text-decoration: none;
-  font-family: @roboto;
-  color:  whitesmoke;
-}
+
+
+
+
+
+
+

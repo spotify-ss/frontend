@@ -1,14 +1,17 @@
 class Carousel {
     constructor(element) {
         this.element = element;
-        this.leftBtn = document.querySelector('.left-button');
-        this.rightBtn = document.querySelector('.right-button');
-        this.imgs = document.querySelectorAll('.carousel-img');
+        // this.leftBtn = document.querySelector('.left-button');
+        // this.rightBtn = document.querySelector('.right-button');
+        this.imgs = this.element.querySelectorAll('.carousel-img');
+
         this.counterPre = this.imgs.length - 1;
         this.counterCurr = 0;
         this.counterNex = 1;
+
         window.addEventListener('load', this.loadFirstImg());
-        window.setInterval(this.changeImgR.bind(this), 9000);
+        window.setInterval(this.changeImgR.bind(this), 8000);
+
         // this.rightBtn.addEventListener('click', () => this.changeImgR());
         // this.leftBtn.addEventListener('click', () => this.changeImgL());
     }
@@ -21,7 +24,7 @@ class Carousel {
         this.imgs.forEach((pic) => {
             pic.style.display = 'none';
             pic.style.zIndex = '0';
-            pic.style.transition = 'all 3s linear';
+            pic.style.transition = 'all 2s linear';
         });
 
         previousImg.style.display = 'block';
@@ -61,17 +64,14 @@ class Carousel {
         let currantImg = this.imgs[this.counterCurr];
         let nextImg = this.imgs[this.counterNex];
 
-        // window.setTimeout(function () {
-        //     console.log(previousImg);
-        //     previousImg.style.display = "none";
-        // }, 2000);
-
+        //---------------------send all photos to back  and hide-----------
         this.imgs.forEach((pic) => {
             pic.style.display = 'none';
             pic.style.zIndex = '0';
-            pic.style.transition = 'all 3s linear';
+            pic.style.transition = 'all 2s linear';
         });
 
+        //-----display 3 photos ontop of eachother and fadeout top photo-----
         previousImg.style.display = 'block';
         previousImg.style.zIndex = '0';
         previousImg.style.opacity = '1';
@@ -156,20 +156,6 @@ class Carousel {
     }
 }
 
-let carousel = document.querySelector('.carousel');
+let carousel = document.querySelectorAll('.carousel');
 // console.log(carousel);
-new Carousel(carousel);
-
-/* If You've gotten this far, you're on your own! Although we will give you some hints:
-    1. You will need to grab a reference to the carousel, and in it grab the laft and right buttons
-    2. You will need to grab a reference to all of the images
-    3. Create a current index
-    4. Those buttons are gonna need some click handlers.
-    5. Think of how you would animate this compoennt. Make the cards slide in and out, or fade. It's up to you!
-    6. Have fun!
-*/
-// function doesThisWork() {
-//     console.log('this works');
-// }
-
-// window.setInterval(doesThisWork, 2000);
+carousel.forEach(gallery => new Carousel(gallery));

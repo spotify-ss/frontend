@@ -9,61 +9,67 @@
   <link rel="stylesheet" type="text/css" href="./CSS/index.css" />
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Quicksand|Roboto" rel="stylesheet">
   <script src="./Carousel/Carousel.js" async></script>
+  <script src="index.js" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
 </head>
 
 <body>
+  <img class="logo mobile-menu" src="../images/Component 2.svg" alt="Queue Logo">
   <nav>
     <img class="logo" src="../images/Component 2.svg" alt="Queue Logo">
     <div class="navItems">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <button>Sign Up</button>
+      <a href="https://www.spotify.com/us/">Spotify</a>
+      <a href="about.html">Meet the Team</a>
+      <button class="navButton">
+        <a href="/app">Sign Up</a>
+      </button>
     </div>
   </nav>
 
   <header>
-    <h1>Queue</h1>
 
-    <!-- CAROUSEL COMPONENT -->
     <div class="carousel">
+      <h1>Queue</h1>
       <!-- <div class="left-button"><</div>  -->
-      <img class="carousel-img active-img" src="..\images\black-and-white-black-and-white-gramophone-707697 (1).jpg" />
-      <img class="carousel-img" src="..\images\band-beat-black-and-white-65717.jpg" />
-      <img class="carousel-img" src="..\images\audio-device-dj-1774.jpg" />
-      <img class="carousel-img" src="..\images\audio-close-up-electronics-1389429.jpg" />
-      <img class="carousel-img" src="..\images\antique-bind-black-and-white-632656.jpg" />
-      <img class="carousel-img" src="..\images\analog-audio-classic-1653090.jpg" />
+      <img class="carousel-img active-img" src="..\images\Hero\acoustic-guitar-black-and-white.jpg" />
+      <img class="carousel-img" src="..\images\Hero\audio-device.jpg" />
+      <img class="carousel-img" src="..\images\Hero\bandPins.jpg" />
+      <img class="carousel-img" src="..\images\Hero\black-and-white-gramophone.jpg" />
+      <img class="carousel-img" src="..\images\Hero\cassetteTape.jpg" />
+      <img class="carousel-img" src="..\images\Hero\Djembe.jpg" />
+      <img class="carousel-img" src="..\images\Hero\recordPlayer.jpg" />
+      <img class="carousel-img" src="..\images\Hero\recordPlayerBlue.jpg" />
       <!-- <div class="right-button">></div> -->
     </div>
 
     <div class="slogan">
-      <h3>music is personal</h3>
-      <h3>find music that is you</h3>
+      <h3 class="slogan1">music is personal</h3>
+      <h3 class="slogan2">find music that is you</h3>
+      <button class="sign-up">
+        <a href="/app">Sign Up</a>
+      </button>
     </div>
 
     <!-- <a href="/app">Login to the App</a> -->
   </header>
 
   <section class="detials-container">
-
-    <section class="description">
+    <section class="what">
       <h2>What is Queue?</h2>
       <P>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis nulla placeat, doloremque sit iste quis.</P>
     </section>
 
-    <section class="what">
+    <section class="why">
       <div class="carousel">
         <!-- <div class="left-button"><</div>  -->
-        <img class="carousel-img active-img" src="..\images\Hero\pexels-photo-111287.jpg" />
-        <img class="carousel-img" src="..\images\Hero\pexels-photo-298297.jpg" />
-        <img class="carousel-img" src="..\images\Hero\pexels-photo-374808.jpg" />
-        <img class="carousel-img" src="..\images\Hero\pexels-photo-668295.jpg" />
-        <img class="carousel-img" src="..\images\Hero\pexels-photo-733767.jpg" />
-        <img class="carousel-img" src="..\images\Hero\pexels-photo-813940.jpg" />
+        <img class="carousel-img active-img" src="..\images\Why\pexels-photo-298297.jpg" />
+        <img class="carousel-img" src="..\images\Why\pexels-photo-374808.jpg" />
+        <img class="carousel-img" src="..\images\Why\pexels-photo-668295.jpg" />
+        <img class="carousel-img" src="..\images\Why\pexels-photo-733767.jpg" />
+        <img class="carousel-img" src="..\images\Why\pexels-photo-813940.jpg" />
+        <img class="carousel-img" src="..\images\Why\pexels-photo-1490844.jpg" />
         <!-- <div class="right-button">></div> -->
       </div>
-      <!-- <img src="..\images\audio-business-computer-257904.jpg" alt="#"> -->
       <div class="text">
         <h2>Why Queue?</h2>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, sed, maxime debitis possimus et ipsam
@@ -79,18 +85,22 @@
           necessitatibus illo? Amet minima, iure harum corrupti maiores culpa animi. Corporis dolorum nisi quidem quis
           recusandae obcaecati dolorem.</p>
       </div>
-      <img src="..\images\acoustic-acoustic-guitar-black-and-white-54133.jpg" alt="#">
+      <div class="carousel">
+        <!-- <div class="left-button"><</div>  -->
+        <img class="carousel-img active-img" src="..\images\How\DAWimage.jpg" />
+        <img class="carousel-img" src="..\images\How\DJaudio-mixer.jpg" />
+        <img class="carousel-img" src="..\images\How\music-earbuds.jpg" />
+        <img class="carousel-img" src="..\images\How\queueforspotify.png" />
+        <!-- <div class="right-button">></div> -->
+      </div>
     </section>
   </section>
 
   <footer>
-    <p>Queue for Spotify</p>
-    <a href="#">About</a>
-    <a href="#">Sign-up</a>
-    <a href="#">Spotify</a>
+    <p>&#169 Queue for Spotify</p>
   </footer>
 
-
+  <script src="./Carousel/Carousel.js" async></script>
 </body>
 
 </html>
